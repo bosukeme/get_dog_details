@@ -189,9 +189,9 @@ def generate_sustainability_tables(num_dog_beds_sold, avg_bed_weight, lea_lea_so
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Total Barrels Of Oil']},
-        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Of Oil Saved']},
-        'total_saving' : {'co2_per_ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Saved']}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'barrels_of_oil': oil_savings_dict['Total Barrels Of Oil']},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'barrels_of_oil': oil_savings_dict['Barrels Of Oil Saved']},
+        'total_saving' : {'co2_per_ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'barrels_of_oil': oil_savings_dict['Barrels Saved']}
     }
 
     leather_collar_and_leash_analysis_input_table = {
@@ -254,9 +254,9 @@ def generate_sustainability_calculations_for_single_dog_bed(num_dog_beds_sold, b
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Total Barrels Of Oil']},
-        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Of Oil Saved']},
-        'total_saving' : {'co2_per_ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Saved']}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'barrels_of_oil': oil_savings_dict['Total Barrels Of Oil']},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'barrels_of_oil': oil_savings_dict['Barrels Of Oil Saved']},
+        'total_saving' : {'co2_per_ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'barrels_of_oil': oil_savings_dict['Barrels Saved']}
     }
 
     leather_collar_and_leash_analysis_input_table = {
@@ -343,9 +343,9 @@ def generate_sustainability_calculations_for_single_dog_collar(lea_col_sold):
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
-        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
-        'total_saving' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'barrels_of_oil': 0},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'barrels_of_oil': 0},
+        'total_saving' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'barrels_of_oil': 0}
     }
 
     leather_collar_and_leash_analysis_input_table = {
@@ -436,9 +436,9 @@ def generate_sustainability_calculations_for_single_dog_leash(lea_lea_sold):
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
-        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
-        'total_saving' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'barrels_of_oil': 0},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'barrels_of_oil': 0},
+        'total_saving' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'barrels_of_oil': 0}
     }
 
     leather_collar_and_leash_analysis_input_table = {
@@ -548,14 +548,14 @@ def generate_polyester_dict_from_product_sales_df(product_sales_df):
             carbon_dict = single_product_dict['carbon_footprint_analysis_table']
             v_pol_co2 = carbon_dict['dog_beds_made_from_virgin_polyester']['co2_per_ton']
             v_pol_wat = carbon_dict['dog_beds_made_from_virgin_polyester']['water_used_bath_tubs']
-            v_pol_oil = carbon_dict['dog_beds_made_from_virgin_polyester']['Barrels Of Oil']
+            v_pol_oil = carbon_dict['dog_beds_made_from_virgin_polyester']['barrels_of_oil']
             v_pol_co2_list.append(v_pol_co2)
             v_pol_wat_list.append(v_pol_wat)
             v_pol_oil_list.append(v_pol_oil)
 
             r_pol_co2 = carbon_dict['dog_beds_made_from_recycled_polyester']['co2_per_ton']
             r_pol_wat = carbon_dict['dog_beds_made_from_recycled_polyester']['water_used_bath_tubs']
-            r_pol_oil = carbon_dict['dog_beds_made_from_recycled_polyester']['Barrels Of Oil']
+            r_pol_oil = carbon_dict['dog_beds_made_from_recycled_polyester']['barrels_of_oil']
             r_pol_co2_list.append(r_pol_co2)
             r_pol_wat_list.append(r_pol_wat)
             r_pol_oil_list.append(r_pol_oil)
@@ -571,9 +571,9 @@ def generate_polyester_dict_from_product_sales_df(product_sales_df):
 
 
     carbon_footprint_analysis_table = {
-        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': avg_v_pol_co2, 'water_used_bath_tubs': v_pol_wat_total, 'Barrels Of Oil': v_pol_oil_total},
-        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': avg_r_pol_co2, 'water_used_bath_tubs': r_pol_wat_total, 'Barrels Of Oil': r_pol_oil_total},
-        'total_saving' : {'co2_per_ton': avg_v_pol_co2-avg_r_pol_co2, 'water_used_bath_tubs': v_pol_wat_total-r_pol_wat_total, 'Barrels Of Oil': v_pol_oil_total-r_pol_oil_total}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': avg_v_pol_co2, 'water_used_bath_tubs': v_pol_wat_total, 'barrels_of_oil': v_pol_oil_total},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': avg_r_pol_co2, 'water_used_bath_tubs': r_pol_wat_total, 'barrels_of_oil': r_pol_oil_total},
+        'total_saving' : {'co2_per_ton': avg_v_pol_co2-avg_r_pol_co2, 'water_used_bath_tubs': v_pol_wat_total-r_pol_wat_total, 'barrels_of_oil': v_pol_oil_total-r_pol_oil_total}
     }
 
     return carbon_footprint_analysis_table
