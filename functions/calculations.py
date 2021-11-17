@@ -1,12 +1,7 @@
 """
 Static Variables From Leather
 """
-import numpy as np
-import pandas as pd
-import math
 from ast import literal_eval
-
-from functions import calculations
 
 def generate_leather_water_and_co2_savings_tables(lea_lea_sold, lea_col_sold, leather_water_used_static_dict, co2_static_dict):
     """
@@ -14,25 +9,25 @@ def generate_leather_water_and_co2_savings_tables(lea_lea_sold, lea_col_sold, le
     """
 
     # Build function that creates the leather_water_dict
-    trad_l_collar = leather_water_used_static_dict['Traditional Leather Collar']
-    rec_l_collar = leather_water_used_static_dict['Recycled Leather Collar']
-    trad_l_leash = leather_water_used_static_dict['Traditional Leather Leash']
-    rec_l_leash = leather_water_used_static_dict['Recycled Leather Leash']
+    trad_l_collar = leather_water_used_static_dict['traditional_leather_collar']
+    rec_l_collar = leather_water_used_static_dict['recycled_leather_collar']
+    trad_l_leash = leather_water_used_static_dict['traditional_leather_leash']
+    rec_l_leash = leather_water_used_static_dict['recycled_leather_leash']
 
     # For the collar
     leather_water_collar_dict = {
-        'Traditional Leather Collar' : {'Litres Of Water Used': trad_l_collar, 'Total': lea_col_sold*trad_l_collar, 'Bath Tubs' : lea_col_sold*trad_l_collar*0.013},
-        'Recycled Leather Collar' : {'Litres Of Water Used': rec_l_collar, 'Total': lea_col_sold*rec_l_collar, 'Bath Tubs' : lea_col_sold*rec_l_collar*0.013}
+        'traditional_leather_collar' : {'litres_of_water_used': trad_l_collar, 'Total': lea_col_sold*trad_l_collar, 'Bath Tubs' : lea_col_sold*trad_l_collar*0.013},
+        'recycled_leather_collar' : {'litres_of_water_used': rec_l_collar, 'Total': lea_col_sold*rec_l_collar, 'Bath Tubs' : lea_col_sold*rec_l_collar*0.013}
     }
-    leather_water_collar_dict['Leather Collar Savings'] = {'Litres Of Water Used': round(trad_l_collar-rec_l_collar,15), 'Total': lea_col_sold*(trad_l_collar-rec_l_collar), 'Bath Tubs' : (lea_col_sold*(trad_l_collar-rec_l_collar))*0.013}
+    leather_water_collar_dict['Leather Collar Savings'] = {'litres_of_water_used': round(trad_l_collar-rec_l_collar,15), 'Total': lea_col_sold*(trad_l_collar-rec_l_collar), 'Bath Tubs' : (lea_col_sold*(trad_l_collar-rec_l_collar))*0.013}
 
 
     # For the leash
     leather_water_leash_dict = {
-        'Traditional Leather Leash' : {'Litres Of Water Used': trad_l_leash, 'Total': lea_lea_sold*trad_l_leash, 'Bath Tubs' : lea_lea_sold*trad_l_leash*0.013},
-        'Recycled Leather Leash' : {'Litres Of Water Used': rec_l_leash, 'Total': lea_lea_sold*rec_l_leash, 'Bath Tubs' : lea_lea_sold*rec_l_leash*0.013}
+        'traditional_leather_leash' : {'litres_of_water_used': trad_l_leash, 'Total': lea_lea_sold*trad_l_leash, 'Bath Tubs' : lea_lea_sold*trad_l_leash*0.013},
+        'recycled_leather_leash' : {'litres_of_water_used': rec_l_leash, 'Total': lea_lea_sold*rec_l_leash, 'Bath Tubs' : lea_lea_sold*rec_l_leash*0.013}
     }
-    leather_water_leash_dict['Leather Leash Savings'] = {'Litres Of Water Used': round(trad_l_leash-rec_l_leash,15), 'Total': lea_lea_sold*round(trad_l_leash-rec_l_leash,15), 'Bath Tubs' : (lea_lea_sold*(trad_l_leash-rec_l_leash))*0.013}
+    leather_water_leash_dict['leather_leash_savings'] = {'litres_of_water_used': round(trad_l_leash-rec_l_leash,15), 'Total': lea_lea_sold*round(trad_l_leash-rec_l_leash,15), 'Bath Tubs' : (lea_lea_sold*(trad_l_leash-rec_l_leash))*0.013}
 
     # Combine leather and leash to create the leather_water_dict
     leather_water_dict = leather_water_collar_dict.copy()
@@ -45,12 +40,12 @@ def generate_leather_water_and_co2_savings_tables(lea_lea_sold, lea_col_sold, le
 
 
     # Create the co2 dict
-    co2_collar = co2_static_dict['Collar Average']
+    co2_collar = co2_static_dict['collar_average']
     co2_leash = co2_static_dict['Leash']
 
     co2_dict = {
-        'Collar Average' : {'Litres Of Water Used': co2_collar, 'Total': lea_col_sold*co2_collar, 'Tonnes Saved' : lea_col_sold*co2_collar/1000},
-        'Recycled Leather Leash' : {'Litres Of Water Used': co2_leash, 'Total': lea_lea_sold*co2_leash, 'Tonnes Saved' : lea_lea_sold*co2_leash/1000}
+        'collar_average' : {'litres_of_water_used': co2_collar, 'Total': lea_col_sold*co2_collar, 'Tonnes Saved' : lea_col_sold*co2_collar/1000},
+        'recycled_leather_leash' : {'litres_of_water_used': co2_leash, 'Total': lea_lea_sold*co2_leash, 'Tonnes Saved' : lea_lea_sold*co2_leash/1000}
     }
 
     return leather_water_dict, co2_dict
@@ -146,17 +141,17 @@ def generate_sustainability_tables(num_dog_beds_sold, avg_bed_weight, lea_lea_so
     Static Dicts for Leather
     """
     co2_static_dict = {
-        'Collar Average' : 0.5584,
+        'collar_average' : 0.5584,
         'Leash' : 1.5356
     }
 
     ## Static variables for leather_water_used
     leather_water_used_static_dict = {
-        'Traditional Leather Collar': 5.296,
-        'Recycled Leather Collar': 0.5296,
-        'Traditional Leather Leash': 16.0204,
-        'Recycled Leather Leash': 1.4564
-    }
+        'traditional_leather_collar': 5.296,
+        'recycled_leather_collar': 0.5296,
+        'traditional_leather_leash': 16.0204,
+        'recycled_leather_leash': 1.4564
+    } 
 
     """
     Static Variables From Leather Tab
@@ -188,34 +183,34 @@ def generate_sustainability_tables(num_dog_beds_sold, avg_bed_weight, lea_lea_so
     Now to structure out the final output as we expect it
     """
     dog_bed_analysis_input_table = {
-        'No. Of Dog Beds Sold Per Year' : num_dog_beds_sold,
-        'Average Weight Of Dog Bed (kg)' : avg_bed_weight
+        'num_of_dog_beds_sold_per_year' : num_dog_beds_sold,
+        'average_weight_of_dog_bed_kg' : avg_bed_weight
     }
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'Dog Beds Made From Virgin Polyester' : {'Co2 Per Ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'Water Used (Bath Tubs)': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Total Barrels Of Oil']},
-        'Dog Beds Made From RECYCLED Polyester' : {'Co2 Per Ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'Water Used (Bath Tubs)': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Of Oil Saved']},
-        'Total Saving' : {'Co2 Per Ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'Water Used (Bath Tubs)': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Saved']}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Total Barrels Of Oil']},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Of Oil Saved']},
+        'total_saving' : {'co2_per_ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Saved']}
     }
 
     leather_collar_and_leash_analysis_input_table = {
-        'No. Of Leather Collars Sold' : lea_lea_sold,
-        'No. Of Leather Leashes Sold' : lea_col_sold
+        'num_of_leather_collars_sold' : lea_lea_sold,
+        'num_of_leather_leashes_sold' : lea_col_sold
     }
 
     leather_collar_and_leash_analysis_table = {
-        'Traditional Leather Collar' : {'Litres Of Water Used': leather_water_dict['Traditional Leather Collar']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Traditional Leather Collar']['Bath Tubs']},
-        'Recycled leather Collar' : {'Litres Of Water Used': leather_water_dict['Recycled Leather Collar']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Recycled Leather Collar']['Bath Tubs']},
-        'Collar Water Saving' : {'Litres Of Water Used': leather_water_dict['Leather Collar Savings']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Leather Collar Savings']['Bath Tubs']},
-        'Traditional Leather Leash' : {'Litres Of Water Used': leather_water_dict['Traditional Leather Leash']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Traditional Leather Leash']['Bath Tubs']},
-        'Recycled leather Leash' : {'Litres Of Water Used': leather_water_dict['Recycled Leather Leash']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Recycled Leather Leash']['Bath Tubs']},
-        'Leash Water Saving' : {'Litres Of Water Used': leather_water_dict['Leather Leash Savings']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Leather Leash Savings']['Bath Tubs']},
+        'traditional_leather_collar' : {'litres_of_water_used': leather_water_dict['traditional_leather_collar']['Total'], 'water_used_bath_tubs': leather_water_dict['traditional_leather_collar']['Bath Tubs']},
+        'recycled_leather_collar' : {'litres_of_water_used': leather_water_dict['recycled_leather_collar']['Total'], 'water_used_bath_tubs': leather_water_dict['recycled_leather_collar']['Bath Tubs']},
+        'collar_water_saving' : {'litres_of_water_used': leather_water_dict['Leather Collar Savings']['Total'], 'water_used_bath_tubs': leather_water_dict['Leather Collar Savings']['Bath Tubs']},
+        'traditional_leather_leash' : {'litres_of_water_used': leather_water_dict['traditional_leather_leash']['Total'], 'water_used_bath_tubs': leather_water_dict['traditional_leather_leash']['Bath Tubs']},
+        'recycled_leather_leash' : {'litres_of_water_used': leather_water_dict['recycled_leather_leash']['Total'], 'water_used_bath_tubs': leather_water_dict['recycled_leather_leash']['Bath Tubs']},
+        'leash_water_saving' : {'litres_of_water_used': leather_water_dict['leather_leash_savings']['Total'], 'water_used_bath_tubs': leather_water_dict['leather_leash_savings']['Bath Tubs']},
     }
 
     co2_saving_per_item_table = {
-        'Recycled Leather Collar' : co2_dict['Collar Average']['Tonnes Saved'],
-        'Recycled Leather Leash' : co2_dict['Recycled Leather Leash']['Tonnes Saved']
+        'recycled_leather_collar' : co2_dict['collar_average']['Tonnes Saved'],
+        'recycled_leather_leash' : co2_dict['recycled_leather_leash']['Tonnes Saved']
     }
 
     return dog_bed_analysis_input_table, carbon_footprint_analysis_table, leather_collar_and_leash_analysis_input_table, leather_collar_and_leash_analysis_table, co2_saving_per_item_table
@@ -253,34 +248,35 @@ def generate_sustainability_calculations_for_single_dog_bed(num_dog_beds_sold, b
     Now to structure out the final output as we expect it
     """
     dog_bed_analysis_input_table = {
-        'No. Of Dog Beds Sold Per Year' : num_dog_beds_sold,
-        'Average Weight Of Dog Bed (kg)' : bed_weight
+        'num_of_dog_beds_sold_per_year' : num_dog_beds_sold,
+        'average_weight_of_dog_bed_kg' : bed_weight
     }
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'Dog Beds Made From Virgin Polyester' : {'Co2 Per Ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'Water Used (Bath Tubs)': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Total Barrels Of Oil']},
-        'Dog Beds Made From RECYCLED Polyester' : {'Co2 Per Ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'Water Used (Bath Tubs)': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Of Oil Saved']},
-        'Total Saving' : {'Co2 Per Ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'Water Used (Bath Tubs)': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Saved']}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Virgin Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Virgin Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Total Barrels Of Oil']},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': polyester_co2_savings_dict['Recycled Polyester']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Recycled Polyester']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Of Oil Saved']},
+        'total_saving' : {'co2_per_ton': polyester_co2_savings_dict['Polyester CO2 Savings']['Total CO2 - Tonne'], 'water_used_bath_tubs': polyester_water_savings_dict['Polyester Water Savings']['Total Bath'], 'Barrels Of Oil': oil_savings_dict['Barrels Saved']}
     }
 
     leather_collar_and_leash_analysis_input_table = {
-        'No. Of Leather Collars Sold' : 0,
-        'No. Of Leather Leashes Sold' : 0
+        'num_of_leather_collars_sold' : 0,
+        'num_of_leather_leashes_sold' : 0
     }
 
+    
     leather_collar_and_leash_analysis_table = {
-        'Traditional Leather Collar' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Recycled leather Collar' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Collar Water Saving' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Traditional Leather Leash' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Recycled leather Leash' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Leash Water Saving' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
+        'traditional_leather_collar' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'recycled_leather_collar' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'collar_water_saving' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'traditional_leather_leash' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'recycled_leather_leash' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'leash_water_saving' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
     }
 
     co2_saving_per_item_table = {
-        'Recycled Leather Collar' : 0,
-        'Recycled Leather Leash' : 0
+        'recycled_leather_collar' : 0,
+        'recycled_leather_leash' : 0
     }
 
     single_product_dict = {
@@ -301,16 +297,17 @@ def generate_sustainability_calculations_for_single_dog_collar(lea_col_sold):
     lea_lea_sold = 0
 
     co2_static_dict = {
-        'Collar Average' : 0.5584,
+        'collar_average' : 0.5584,
         'Leash' : 1.5356
     }
 
     ## Static variables for leather_water_used
     leather_water_used_static_dict = {
-        'Traditional Leather Collar': 5.296,
-        'Recycled Leather Collar': 0.5296,
-        'Traditional Leather Leash': 16.0204,
-        'Recycled Leather Leash': 1.4564
+        'traditional_leather_collar': 5.296,
+        'recycled_leather_collar': 0.5296,
+        'traditional_leather_leash': 16.0204,
+        'recycled_leather_leash': 1.4564
+        
     }
 
     """
@@ -340,34 +337,35 @@ def generate_sustainability_calculations_for_single_dog_collar(lea_col_sold):
     Now to structure out the final output as we expect it
     """
     dog_bed_analysis_input_table = {
-        'No. Of Dog Beds Sold Per Year' : 0,
-        'Average Weight Of Dog Bed (kg)' : 0
+        'num_of_dog_beds_sold_per_year' : 0,
+        'average_weight_of_dog_bed_kg' : 0
     }
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'Dog Beds Made From Virgin Polyester' : {'Co2 Per Ton': 0, 'Water Used (Bath Tubs)': 0, 'Barrels Of Oil': 0},
-        'Dog Beds Made From RECYCLED Polyester' : {'Co2 Per Ton': 0, 'Water Used (Bath Tubs)': 0, 'Barrels Of Oil': 0},
-        'Total Saving' : {'Co2 Per Ton': 0, 'Water Used (Bath Tubs)': 0, 'Barrels Of Oil': 0}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
+        'total_saving' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0}
     }
 
     leather_collar_and_leash_analysis_input_table = {
-        'No. Of Leather Collars Sold' : 0,
-        'No. Of Leather Leashes Sold' : lea_col_sold
+        'num_of_leather_collars_sold' : 0,
+        'num_of_leather_leashes_sold' : lea_col_sold
     }
 
+
     leather_collar_and_leash_analysis_table = {
-        'Traditional Leather Collar' : {'Litres Of Water Used': leather_water_dict['Traditional Leather Collar']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Traditional Leather Collar']['Bath Tubs']},
-        'Recycled leather Collar' : {'Litres Of Water Used': leather_water_dict['Recycled Leather Collar']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Recycled Leather Collar']['Bath Tubs']},
-        'Collar Water Saving' : {'Litres Of Water Used': leather_water_dict['Leather Collar Savings']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Leather Collar Savings']['Bath Tubs']},
-        'Traditional Leather Leash' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Recycled leather Leash' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Leash Water Saving' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
+        'traditional_leather_collar' : {'litres_of_water_used': leather_water_dict['traditional_leather_collar']['Total'], 'water_used_bath_tubs': leather_water_dict['traditional_leather_collar']['Bath Tubs']},
+        'recycled_leather_collar' : {'litres_of_water_used': leather_water_dict['recycled_leather_collar']['Total'], 'water_used_bath_tubs': leather_water_dict['recycled_leather_collar']['Bath Tubs']},
+        'collar_water_saving' : {'litres_of_water_used': leather_water_dict['Leather Collar Savings']['Total'], 'water_used_bath_tubs': leather_water_dict['Leather Collar Savings']['Bath Tubs']},
+        'traditional_leather_leash' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'recycled_leather_leash' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'leash_water_saving' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
     }
 
     co2_saving_per_item_table = {
-        'Recycled Leather Collar' : co2_dict['Collar Average']['Tonnes Saved'],
-        'Recycled Leather Leash' : 0
+        'recycled_leather_collar' : co2_dict['collar_average']['Tonnes Saved'],
+        'recycled_leather_leash' : 0
     }
 
     single_product_dict = {
@@ -388,17 +386,21 @@ def generate_sustainability_calculations_for_single_dog_leash(lea_lea_sold):
     lea_col_sold = 0
 
     co2_static_dict = {
-        'Collar Average' : 0.5584,
+        'collar_average' : 0.5584,
         'Leash' : 1.5356
     }
 
     ## Static variables for leather_water_used
+
     leather_water_used_static_dict = {
-        'Traditional Leather Collar': 5.296,
-        'Recycled Leather Collar': 0.5296,
-        'Traditional Leather Leash': 16.0204,
-        'Recycled Leather Leash': 1.4564
+        'traditional_leather_collar': 5.296,
+        'recycled_leather_collar': 0.5296,
+        'traditional_leather_leash': 16.0204,
+        'recycled_leather_leash': 1.4564
+        
     }
+
+
 
     """
     Static Variables From Leather Tab
@@ -427,35 +429,42 @@ def generate_sustainability_calculations_for_single_dog_leash(lea_lea_sold):
     Now to structure out the final output as we expect it
     """
     dog_bed_analysis_input_table = {
-        'No. Of Dog Beds Sold Per Year' : 0,
-        'Average Weight Of Dog Bed (kg)' : 0
+        'num_of_dog_beds_sold_per_year' : 0,
+        'average_weight_of_dog_bed_kg' : 0
     }
+
 
     #* For this table, note that the column name for the table keys is 'Raw Material'
     carbon_footprint_analysis_table = {
-        'Dog Beds Made From Virgin Polyester' : {'Co2 Per Ton': 0, 'Water Used (Bath Tubs)': 0, 'Barrels Of Oil': 0},
-        'Dog Beds Made From RECYCLED Polyester' : {'Co2 Per Ton': 0, 'Water Used (Bath Tubs)': 0, 'Barrels Of Oil': 0},
-        'Total Saving' : {'Co2 Per Ton': 0, 'Water Used (Bath Tubs)': 0, 'Barrels Of Oil': 0}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0},
+        'total_saving' : {'co2_per_ton': 0, 'water_used_bath_tubs': 0, 'Barrels Of Oil': 0}
     }
 
     leather_collar_and_leash_analysis_input_table = {
-        'No. Of Leather Collars Sold' : lea_lea_sold,
-        'No. Of Leather Leashes Sold' : 0
+        'num_of_leather_collars_sold' : lea_lea_sold,
+        'num_of_leather_leashes_sold' : 0
     }
+
 
     leather_collar_and_leash_analysis_table = {
-        'Traditional Leather Collar' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Recycled leather Collar' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Collar Water Saving' : {'Litres Of Water Used': 0, 'Water Used (Bath Tubs)': 0},
-        'Traditional Leather Leash' : {'Litres Of Water Used': leather_water_dict['Traditional Leather Leash']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Traditional Leather Leash']['Bath Tubs']},
-        'Recycled leather Leash' : {'Litres Of Water Used': leather_water_dict['Recycled Leather Leash']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Recycled Leather Leash']['Bath Tubs']},
-        'Leash Water Saving' : {'Litres Of Water Used': leather_water_dict['Leather Leash Savings']['Total'], 'Water Used (Bath Tubs)': leather_water_dict['Leather Leash Savings']['Bath Tubs']},
+        'traditional_leather_collar' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'recycled_leather_collar' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'collar_water_saving' : {'litres_of_water_used': 0, 'water_used_bath_tubs': 0},
+        'traditional_leather_leash' : {'litres_of_water_used': leather_water_dict['traditional_leather_leash']['Total'], 'water_used_bath_tubs': leather_water_dict['traditional_leather_leash']['Bath Tubs']},
+        'recycled_leather_leash' : {'litres_of_water_used': leather_water_dict['recycled_leather_leash']['Total'], 'water_used_bath_tubs': leather_water_dict['recycled_leather_leash']['Bath Tubs']},
+        'leash_water_saving' : {'litres_of_water_used': leather_water_dict['leather_leash_savings']['Total'], 'water_used_bath_tubs': leather_water_dict['leather_leash_savings']['Bath Tubs']},
     }
 
+
     co2_saving_per_item_table = {
-        'Recycled Leather Collar' : 0,
-        'Recycled Leather Leash' : co2_dict['Recycled Leather Leash']['Tonnes Saved']
+        'recycled_leather_collar' : 0,
+        'recycled_leather_leash' : co2_dict['recycled_leather_leash']['Tonnes Saved']
     }
+
+
+
+
 
     single_product_dict = {
         'dog_bed_analysis_input_table' : dog_bed_analysis_input_table,
@@ -507,8 +516,8 @@ def generate_co2_savings_from_product_sales_df(product_sales_df):
         if single_product_dict != 'NA':
 
             co2_table = single_product_dict['co2_saving_per_item_table']
-            collar = co2_table['Recycled Leather Collar']
-            leash = co2_table['Recycled Leather Leash']
+            collar = co2_table['recycled_leather_collar']
+            leash = co2_table['recycled_leather_leash']
             collar_co2_list.append(collar)
             leash_co2_list.append(leash)
 
@@ -516,10 +525,11 @@ def generate_co2_savings_from_product_sales_df(product_sales_df):
     leash_total = int(sum(leash_co2_list))
 
     co2_saving_per_item_table = {
-        'Recycled Leather Collar' : collar_total,
-        'Recycled Leather Leash' : leash_total
+        'recycled_leather_collar' : collar_total,
+        'recycled_leather_leash' : leash_total
     }
-    
+
+
     return co2_saving_per_item_table
 
 
@@ -536,16 +546,16 @@ def generate_polyester_dict_from_product_sales_df(product_sales_df):
         single_product_dict = product_sales_df['Product Sustainability Metrics'].iloc[i]
         if single_product_dict != 'NA':
             carbon_dict = single_product_dict['carbon_footprint_analysis_table']
-            v_pol_co2 = carbon_dict['Dog Beds Made From Virgin Polyester']['Co2 Per Ton']
-            v_pol_wat = carbon_dict['Dog Beds Made From Virgin Polyester']['Water Used (Bath Tubs)']
-            v_pol_oil = carbon_dict['Dog Beds Made From Virgin Polyester']['Barrels Of Oil']
+            v_pol_co2 = carbon_dict['dog_beds_made_from_virgin_polyester']['co2_per_ton']
+            v_pol_wat = carbon_dict['dog_beds_made_from_virgin_polyester']['water_used_bath_tubs']
+            v_pol_oil = carbon_dict['dog_beds_made_from_virgin_polyester']['Barrels Of Oil']
             v_pol_co2_list.append(v_pol_co2)
             v_pol_wat_list.append(v_pol_wat)
             v_pol_oil_list.append(v_pol_oil)
 
-            r_pol_co2 = carbon_dict['Dog Beds Made From RECYCLED Polyester']['Co2 Per Ton']
-            r_pol_wat = carbon_dict['Dog Beds Made From RECYCLED Polyester']['Water Used (Bath Tubs)']
-            r_pol_oil = carbon_dict['Dog Beds Made From RECYCLED Polyester']['Barrels Of Oil']
+            r_pol_co2 = carbon_dict['dog_beds_made_from_recycled_polyester']['co2_per_ton']
+            r_pol_wat = carbon_dict['dog_beds_made_from_recycled_polyester']['water_used_bath_tubs']
+            r_pol_oil = carbon_dict['dog_beds_made_from_recycled_polyester']['Barrels Of Oil']
             r_pol_co2_list.append(r_pol_co2)
             r_pol_wat_list.append(r_pol_wat)
             r_pol_oil_list.append(r_pol_oil)
@@ -561,9 +571,9 @@ def generate_polyester_dict_from_product_sales_df(product_sales_df):
 
 
     carbon_footprint_analysis_table = {
-        'Dog Beds Made From Virgin Polyester' : {'Co2 Per Ton': avg_v_pol_co2, 'Water Used (Bath Tubs)': v_pol_wat_total, 'Barrels Of Oil': v_pol_oil_total},
-        'Dog Beds Made From RECYCLED Polyester' : {'Co2 Per Ton': avg_r_pol_co2, 'Water Used (Bath Tubs)': r_pol_wat_total, 'Barrels Of Oil': r_pol_oil_total},
-        'Total Saving' : {'Co2 Per Ton': avg_v_pol_co2-avg_r_pol_co2, 'Water Used (Bath Tubs)': v_pol_wat_total-r_pol_wat_total, 'Barrels Of Oil': v_pol_oil_total-r_pol_oil_total}
+        'dog_beds_made_from_virgin_polyester' : {'co2_per_ton': avg_v_pol_co2, 'water_used_bath_tubs': v_pol_wat_total, 'Barrels Of Oil': v_pol_oil_total},
+        'dog_beds_made_from_recycled_polyester' : {'co2_per_ton': avg_r_pol_co2, 'water_used_bath_tubs': r_pol_wat_total, 'Barrels Of Oil': r_pol_oil_total},
+        'total_saving' : {'co2_per_ton': avg_v_pol_co2-avg_r_pol_co2, 'water_used_bath_tubs': v_pol_wat_total-r_pol_wat_total, 'Barrels Of Oil': v_pol_oil_total-r_pol_oil_total}
     }
 
     return carbon_footprint_analysis_table
@@ -586,20 +596,20 @@ def generate_leather_dict_from_product_sales_df(product_sales_df):
         single_product_dict = product_sales_df['Product Sustainability Metrics'].iloc[i]
         if single_product_dict != 'NA':
             leather_dict = single_product_dict['leather_collar_and_leash_analysis_table']
-            l_col_wat = leather_dict['Traditional Leather Collar']['Litres Of Water Used']
-            l_col_bat = leather_dict['Traditional Leather Collar']['Water Used (Bath Tubs)']
-            r_col_wat = leather_dict['Recycled leather Collar']['Litres Of Water Used']
-            r_col_bat = leather_dict['Recycled leather Collar']['Water Used (Bath Tubs)']
+            l_col_wat = leather_dict['traditional_leather_collar']['litres_of_water_used']
+            l_col_bat = leather_dict['traditional_leather_collar']['water_used_bath_tubs']
+            r_col_wat = leather_dict['recycled_leather_collar']['litres_of_water_used']
+            r_col_bat = leather_dict['recycled_leather_collar']['water_used_bath_tubs']
 
             l_col_wat_list.append(l_col_wat)
             l_col_bat_list.append(l_col_bat)
             r_col_wat_list.append(r_col_wat)
             r_col_bat_list.append(r_col_bat)
 
-            l_lea_wat = leather_dict['Traditional Leather Leash']['Litres Of Water Used']
-            l_lea_bat = leather_dict['Traditional Leather Leash']['Water Used (Bath Tubs)']
-            r_lea_wat = leather_dict['Recycled leather Leash']['Litres Of Water Used']
-            r_lea_bat = leather_dict['Recycled leather Leash']['Water Used (Bath Tubs)']
+            l_lea_wat = leather_dict['traditional_leather_leash']['litres_of_water_used']
+            l_lea_bat = leather_dict['traditional_leather_leash']['water_used_bath_tubs']
+            r_lea_wat = leather_dict['recycled_leather_leash']['litres_of_water_used']
+            r_lea_bat = leather_dict['recycled_leather_leash']['water_used_bath_tubs']
 
             l_lea_wat_list.append(l_lea_wat)
             l_lea_bat_list.append(l_lea_bat)
@@ -617,12 +627,12 @@ def generate_leather_dict_from_product_sales_df(product_sales_df):
     r_lea_bat_total = int(sum(r_lea_bat_list))
 
     leather_collar_and_leash_analysis_table = {
-        'Traditional Leather Collar' : {'Litres Of Water Used': l_col_wat_total, 'Water Used (Bath Tubs)': l_col_bat_total},
-        'Recycled leather Collar' : {'Litres Of Water Used': r_col_wat_total, 'Water Used (Bath Tubs)': r_col_bat_total},
-        'Collar Water Saving' : {'Litres Of Water Used': l_col_wat_total-r_col_wat_total, 'Water Used (Bath Tubs)': l_col_bat_total-r_col_bat_total},
-        'Traditional Leather Leash' : {'Litres Of Water Used': l_lea_wat_total, 'Water Used (Bath Tubs)': l_lea_bat_total},
-        'Recycled leather Leash' : {'Litres Of Water Used': r_lea_wat_total, 'Water Used (Bath Tubs)': r_lea_bat_total},
-        'Leash Water Saving' : {'Litres Of Water Used': l_lea_wat_total-r_lea_wat_total, 'Water Used (Bath Tubs)': l_lea_bat_total-r_lea_bat_total},
+        'traditional_leather_collar' : {'litres_of_water_used': l_col_wat_total, 'water_used_bath_tubs': l_col_bat_total},
+        'recycled_leather_collar' : {'litres_of_water_used': r_col_wat_total, 'water_used_bath_tubs': r_col_bat_total},
+        'collar_water_saving' : {'litres_of_water_used': l_col_wat_total-r_col_wat_total, 'water_used_bath_tubs': l_col_bat_total-r_col_bat_total},
+        'traditional_leather_leash' : {'litres_of_water_used': l_lea_wat_total, 'water_used_bath_tubs': l_lea_bat_total},
+        'recycled_leather_leash' : {'litres_of_water_used': r_lea_wat_total, 'water_used_bath_tubs': r_lea_bat_total},
+        'leash_water_saving' : {'litres_of_water_used': l_lea_wat_total-r_lea_wat_total, 'water_used_bath_tubs': l_lea_bat_total-r_lea_bat_total},
     }
 
     return leather_collar_and_leash_analysis_table
